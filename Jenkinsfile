@@ -1,18 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+    agent none
     stages {
-        stage('Build') {
+        stage('Front-end') {
+            agent {
+                docker { image 'node:6-alpine'
+                         args '-p 3000:3000'                            
+                 }
+            environment {
+             CI = 'true'
+             }
+            }
             steps {
                 sh 'npm install'
             }
+        }
+    
+        stage('Front-end') {
+            agent {
+                docker { image 'sonarqube' 
+                         args '-p 9000:9000 -p 9002;9002' 
+                }
+            }
+
+    stages {
         }
         stage('Test') {
             steps {
