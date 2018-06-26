@@ -14,7 +14,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Build') {
+        stage('SonarQube') {
             steps {
                 def scannerHome = tool 'SonarQubeScanner'
                 withSonarQubeEnv('SonarQube') {
