@@ -27,14 +27,14 @@ pipeline {
             }
         }
 
-	state('SonarQube Instal'){
-	     agent {
-		docker { 
-		    image 'sonarqube' 
-		    args '-p 9000:9000 -p 9002:9002'
-		}
-	}		
-	       
-		
-    }
+	    stage('SonarQube Instal'){
+	         agent {
+		        docker { 
+		            image 'sonarqube' 
+		            args '-p 9000:9000 -p 9002:9002'
+		        }   
+	        }			
+        }   
+    }   
+
 }
