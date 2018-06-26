@@ -4,6 +4,10 @@ pipeline {
             image 'node:6-alpine'
             args '-p 3000:3000'
         }
+        docker {
+            image 'sonarqube'
+            args '-p 9000:9000'
+        }
     }
     environment {
         CI = 'true'
