@@ -1,9 +1,5 @@
 pipeline {
     agent {
-        docker { 
-            image 'sonarqube'
-            args '-p 9000:9000 -p 9002:9002'
-             }
         docker {
             image 'node:6-alpine'
             args '-p 3000:3000'
