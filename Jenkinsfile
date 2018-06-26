@@ -6,7 +6,7 @@ pipeline {
         }
         docker {
             image 'sonarqube'
-            args '-p 9000:9000'
+            args '-p 9000:9000 -p 9002:9002'
         }
     }
     environment {
