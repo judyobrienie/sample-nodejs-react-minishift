@@ -1,5 +1,9 @@
 pipeline {
     agent {
+        docker { 
+            image 'sonarqube'
+            args '-p 9000:9000 -p 9002:9002'
+             },
         docker {
             image 'node:6-alpine'
             args '-p 3000:3000'
@@ -25,16 +29,6 @@ pipeline {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)' 
                 sh './jenkins/scripts/kill.sh' 
             }
-        }
-    }
-    agent none
-    stages {
-        stage('Sonarqube') {
-            agent {
-                docker { image 'sonarqube'
-                        args '-p 9000:9000 -p 9002:9002' }
-            }
-            
         }
     }
 
