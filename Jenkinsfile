@@ -1,50 +1,30 @@
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    environment { 
+        CI = 'true'
+    }
     stages {
-        stage('Front-end') {
-            agent {
-                docker { image 'node:6-alpine'
-                         args '-p 3000:3000'                            
-                 }
-            environment {
-             CI = 'true'
-             }
-            }
+        stage('Build') {
             steps {
                 sh 'npm install'
             }
-        }
-    
-        stage('Front-end') {
-            agent {
-                docker { image 'sonarqube' 
-                         args '-p 9000:9000 -p 9002;9002' 
-                }
-            }
-
-    stages {
         }
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') {
+        stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                sh './jenkins/scripts/deliver.sh' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
+                sh './jenkins/scripts/kill.sh' 
             }
         }
-
-	    stage('SonarQube Instal'){
-	         agent {
-		        docker { 
-		            image 'sonarqube' 
-		            args '-p 9000:9000 -p 9002:9002'
-		        }   
-	        }			
-        }   
-    }   
-
+    }
 }
