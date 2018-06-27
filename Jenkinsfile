@@ -14,6 +14,14 @@ pipeline {
                 sh 'npm install'
             }
         }
+         stage('Build') {
+            steps {
+                def scannerHome = tool 'SonarQubeScanner'
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
