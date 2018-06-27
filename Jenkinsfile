@@ -9,18 +9,18 @@ pipeline {
         CI = 'true'
     }
     stages {
+                sh 'npm install'
         stage('Build') {
             steps {
-                sh 'npm install'
             }
         }
         stage('SonarQube') {
-            
+            steps {
                 def scannerHome = tool 'SonarQubeScanner'
-                withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    withSonarQubeEnv('SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner"
                       }
-                  
+                  }
              }
 
         stage('Test') {
