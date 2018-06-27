@@ -19,14 +19,6 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Checkout') {
-            steps {
-                def scannerHome = tool 'SonarQubeScanner'
-                withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
         stage('Deliver') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
@@ -36,4 +28,12 @@ pipeline {
         }
     }
 }
- 
+node{
+    stage('Checkout') {
+    
+                def scannerHome = tool 'SonarQubeScanner'
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+}
