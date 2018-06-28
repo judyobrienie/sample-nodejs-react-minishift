@@ -11,7 +11,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Your React Project</h1>
         </header>
         <p className="App-intro">
-	  Welome to Your React Project. Good Luck!!
+	  Welome to Your React Project. Good Luck!
           To get started, edit <code>src/App.js</code> and save to reload.
     </p>
       </div>
@@ -19,4 +19,4 @@ class App extends Component {
   }
 }
 
-export default
+export default App;
