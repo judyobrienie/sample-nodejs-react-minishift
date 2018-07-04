@@ -36,9 +36,7 @@ docker network create isolated_project_nw
     --name sonarqube \
     -p 9000:9000 -p 9092:9092 \
     --network=isolated_project_nw \
-    -v /server_data/sonarqube/data:/opt/sonarqube/data \
-    -v /server_data/sonarqube/extensions:/opt/sonarqube/extensions \
-     quay.io/judyobrien/sonarqube
+    quay.io/judyobrien/sonarqube
 ```
 
 Use the follow command to get the IPv4Address of this sonarqube container as and note it down. You will need this for jenkins config.
