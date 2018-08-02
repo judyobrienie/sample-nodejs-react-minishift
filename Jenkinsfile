@@ -1,9 +1,9 @@
 pipeline {
    agent {
-       docker {
-           image 'node:6-alpine'
-           args '-p 3000:3000'
-       }
+        node {
+                // spin up a node.js slave pod to run this build on
+                label 'nodejs'
+              }
    }
    environment {
        CI = 'true'
